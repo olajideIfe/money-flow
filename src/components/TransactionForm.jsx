@@ -99,6 +99,10 @@ const TransactionForm = ({
             Education
           </option>
 
+          <option>
+            Others
+          </option>
+
         </select>
 
         <input

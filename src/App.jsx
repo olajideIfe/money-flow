@@ -47,12 +47,27 @@ const App = () => {
     });
   };
 
-  console.log(transactions);
+  const deleteTransaction = (id) => {
+    setTransactions(
+      transactions.filter((transaction) => transaction.id !== id),
+    );
+  };
+
+  const income = transactions
+    .filter((transaction) => transaction.type === "Income")
+    .reduce((total, transaction) => total + Number(transaction.amount), 0);
+
+  const expenses = transactions
+    .filter((transaction) => transaction.type === "Expense")
+    .reduce((total, transaction) => total + Number(transaction.amount), 0);
+
+  const balance = income - expenses;
+
   return (
     <div className="p-6">
       <h1 className="text-4xl font-bold mb-8">💰 MoneyFlow</h1>
 
-      <Dashboard balance={0} income={0} expenses={0} />
+      <Dashboard balance={balance} income={income} expenses={expenses} />
 
       <TransactionForm
         formData={formData}
@@ -62,11 +77,9 @@ const App = () => {
 
       <SearchBar search={search} setSearch={setSearch} />
 
-      {
-  transactions.length === 0 ? (
-
-    <div
-      className="
+      {transactions.length === 0 ? (
+        <div
+          className="
       bg-white
       p-10
       rounded-3xl
@@ -74,33 +87,24 @@ const App = () => {
       text-center
       mt-8
       "
-    >
-      <h2 className="text-2xl font-bold">
-        💰 No Transactions Yet
-      </h2>
+        >
+          <h2 className="text-2xl font-bold">💰 No Transactions Yet</h2>
 
-      <p className="text-gray-500 mt-2">
-        Add your first transaction above.
-      </p>
-    </div>
-
-  ) : (
-
-    <div className="grid md:grid-cols-2 gap-6 mt-8">
-
-      {transactions.map(
-        (transaction) => (
-          <TransactionCard
-            key={transaction.id}
-            transaction={transaction}
-          />
-        )
+          <p className="text-gray-500 mt-2">
+            Add your first transaction above.
+          </p>
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 gap-6 mt-8">
+          {transactions.map((transaction) => (
+            <TransactionCard
+              key={transaction.id}
+              transaction={transaction}
+              deleteTransaction={deleteTransaction}
+            />
+          ))}
+        </div>
       )}
-
-    </div>
-
-  )
-}
     </div>
   );
 };
