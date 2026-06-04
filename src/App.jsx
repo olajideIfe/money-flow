@@ -107,8 +107,12 @@ const App = () => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-4xl font-bold mb-8">💰 MoneyFlow</h1>
+    <div className=" min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 ">
+      <h1 className=" text-5xl font-bold text-white mb-2">💰 MoneyFlow</h1>
+
+      <p className="text-slate-300 mb-8 ">
+        Manage income, expenses and financial growth.
+      </p>
 
       <Dashboard balance={balance} income={income} expenses={expenses} />
 
@@ -120,63 +124,52 @@ const App = () => {
       />
 
       <SearchBar search={search} setSearch={setSearch} />
-      <div
-        className=" flex gap-2 flex-wrap mb-6 "
-      >
+      <div className=" flex gap-2 flex-wrap mb-6 ">
         <button
           onClick={() => setCategoryFilter("All")}
-          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+          className=" px-4 py-2 rounded-full bg-slate-800 text-white border border-slate-700 hover:bg-emerald-500 transition"
         >
           All
         </button>
 
         <button
           onClick={() => setCategoryFilter("Salary")}
-          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+          className=" px-4 py-2 rounded-full bg-slate-800 text-white border border-slate-700 hover:bg-emerald-500 transition"
         >
           Salary
         </button>
 
         <button
           onClick={() => setCategoryFilter("Food")}
-          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+          className=" px-4 py-2 rounded-full bg-slate-800 text-white border border-slate-700 hover:bg-emerald-500 transition"
         >
           Food
         </button>
 
         <button
           onClick={() => setCategoryFilter("Transport")}
-          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+          className=" px-4 py-2 rounded-full bg-slate-800 text-white border border-slate-700 hover:bg-emerald-500 transition"
         >
           Transport
         </button>
 
         <button
           onClick={() => setCategoryFilter("Bills")}
-          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+          className=" px-4 py-2 rounded-full bg-slate-800 text-white border border-slate-700 hover:bg-emerald-500 transition"
         >
           Bills
         </button>
 
         <button
           onClick={() => setCategoryFilter("Shopping")}
-          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+          className=" px-4 py-2 rounded-full bg-slate-800 text-white border border-slate-700 hover:bg-emerald-500 transition"
         >
           Shopping
         </button>
       </div>
 
       {transactions.length === 0 ? (
-        <div
-          className="
-      bg-white
-      p-10
-      rounded-3xl
-      shadow-lg
-      text-center
-      mt-8
-      "
-        >
+        <div className=" bg-white p-10 rounded-3xl shadow-lg text-center mt-8 ">
           <h2 className="text-2xl font-bold">💰 No Transactions Yet</h2>
 
           <p className="text-gray-500 mt-2">

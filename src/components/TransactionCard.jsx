@@ -6,17 +6,24 @@ const TransactionCard = ({
   editTransaction,
 }) => {
   return (
-    <div
-      className="
-      bg-white
-      p-5
-      rounded-xl
-      shadow-md
-      "
-    >
+    <div className=" bg-slate-800 text-white p-6 rounded-3xl shadow-lg ">
       <h2 className="text-xl font-bold">{transaction.title}</h2>
 
-      <p>Amount: ₦{transaction.amount}</p>
+      {transaction.type === "Income" && (
+        <span className=" bg-emerald-500 px-3 py-1 rounded-full text-sm text-white inline-block mt-2 ">
+          Income
+        </span>
+      )}
+
+      {transaction.type === "Expense" && (
+        <span className=" bg-red-500 px-3 py-1 rounded-full text-sm text-white inline-block mt-2 ">
+          Expense
+        </span>
+      )}
+
+      <p className=" font-bold text-emerald-400 ">
+        Amount: ₦{transaction.amount}
+      </p>
 
       <p>Type: {transaction.type}</p>
 

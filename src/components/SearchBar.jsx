@@ -1,24 +1,13 @@
-import React from 'react'
+import React from "react";
 
-const SearchBar = ({
-  search,
-  setSearch,
-}) => {
+const SearchBar = ({ search, setSearch }) => {
   return (
     <input
       type="text"
       placeholder="Search transactions..."
       value={search}
-      onChange={(e) =>
-        setSearch(e.target.value)
-      }
-      className="
-      border
-      p-4
-      rounded-xl
-      w-full
-      mb-8
-      "
+      onChange={(e) => setSearch(e.target.value)}
+      className=" w-full p-4 rounded-xl bg-slate-800 text-white border border-slate-700 mb-8 "
     />
   );
 };
