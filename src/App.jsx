@@ -21,6 +21,7 @@ const App = () => {
 
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
+  const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -36,12 +37,27 @@ const App = () => {
   const addTransaction = (e) => {
     e.preventDefault();
 
-    const newTransaction = {
-      id: Date.now(),
-      ...formData,
-    };
+    if (editingId) {
+      setTransactions(
+        transactions.map((transaction) =>
+          transaction.id === editingId
+            ? {
+                ...transaction,
+                ...formData,
+              }
+            : transaction,
+        ),
+      );
 
-    setTransactions([...transactions, newTransaction]);
+      setEditingId(null);
+    } else {
+      const newTransaction = {
+        id: Date.now(),
+        ...formData,
+      };
+
+      setTransactions([...transactions, newTransaction]);
+    }
 
     setFormData({
       title: "",
@@ -78,6 +94,17 @@ const App = () => {
 
     return matchesSearch && matchesCategory;
   });
+  const editTransaction = (transaction) => {
+    setFormData({
+      title: transaction.title,
+      amount: transaction.amount,
+      type: transaction.type,
+      category: transaction.category,
+      date: transaction.date,
+    });
+
+    setEditingId(transaction.id);
+  };
 
   return (
     <div className="p-6">
@@ -89,34 +116,54 @@ const App = () => {
         formData={formData}
         handleChange={handleChange}
         addTransaction={addTransaction}
+        editingId={editingId}
       />
 
       <SearchBar search={search} setSearch={setSearch} />
       <div
-        className="
-flex
-gap-2
-flex-wrap
-mb-6
-"
+        className=" flex gap-2 flex-wrap mb-6 "
       >
         <button
           onClick={() => setCategoryFilter("All")}
-          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition " >
+          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+        >
           All
         </button>
 
-        <button onClick={() => setCategoryFilter("Salary")}className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition " >Salary</button>
+        <button
+          onClick={() => setCategoryFilter("Salary")}
+          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+        >
+          Salary
+        </button>
 
-        <button onClick={() => setCategoryFilter("Food")}className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition " >Food</button>
+        <button
+          onClick={() => setCategoryFilter("Food")}
+          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+        >
+          Food
+        </button>
 
-        <button onClick={() => setCategoryFilter("Transport")} className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition " >
+        <button
+          onClick={() => setCategoryFilter("Transport")}
+          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+        >
           Transport
         </button>
 
-        <button onClick={() => setCategoryFilter("Bills")}className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition " >Bills</button>
+        <button
+          onClick={() => setCategoryFilter("Bills")}
+          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+        >
+          Bills
+        </button>
 
-        <button onClick={() => setCategoryFilter("Shopping")}className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition " >Shopping</button>
+        <button
+          onClick={() => setCategoryFilter("Shopping")}
+          className=" px-4 py-2 rounded-full bg-white shadow hover:shadow-lg transition "
+        >
+          Shopping
+        </button>
       </div>
 
       {transactions.length === 0 ? (
@@ -143,6 +190,7 @@ mb-6
               key={transaction.id}
               transaction={transaction}
               deleteTransaction={deleteTransaction}
+              editTransaction={editTransaction}
             />
           ))}
         </div>

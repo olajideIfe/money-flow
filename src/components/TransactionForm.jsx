@@ -1,10 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const TransactionForm = ({
-  formData,
-  handleChange,
-  addTransaction,
-}) => {
+const TransactionForm = ({ formData, handleChange, addTransaction, editingId }) => {
   return (
     <form
       onSubmit={addTransaction}
@@ -16,13 +12,9 @@ const TransactionForm = ({
       mb-8
       "
     >
-
-      <h2 className="text-3xl font-bold mb-6">
-        Add Transaction
-      </h2>
+      <h2 className="text-3xl font-bold mb-6">Add Transaction</h2>
 
       <div className="grid md:grid-cols-2 gap-4">
-
         <input
           type="text"
           name="title"
@@ -47,18 +39,11 @@ const TransactionForm = ({
           onChange={handleChange}
           className="border p-3 rounded-xl"
         >
-          <option value="">
-            Select Type
-          </option>
+          <option value="">Select Type</option>
 
-          <option>
-            Income
-          </option>
+          <option>Income</option>
 
-          <option>
-            Expense
-          </option>
-
+          <option>Expense</option>
         </select>
 
         <select
@@ -67,42 +52,23 @@ const TransactionForm = ({
           onChange={handleChange}
           className="border p-3 rounded-xl"
         >
-          <option value="">
-            Category
-          </option>
+          <option value="">Category</option>
 
-          <option>
-            Salary
-          </option>
+          <option>Salary</option>
 
-          <option>
-            Food
-          </option>
+          <option>Food</option>
 
-          <option>
-            Transport
-          </option>
+          <option>Transport</option>
 
-          <option>
-            Bills
-          </option>
+          <option>Bills</option>
 
-          <option>
-            Shopping
-          </option>
+          <option>Shopping</option>
 
-          <option>
-            Health
-          </option>
+          <option>Health</option>
 
-          <option>
-            Education
-          </option>
+          <option>Education</option>
 
-          <option>
-            Others
-          </option>
-
+          <option>Others</option>
         </select>
 
         <input
@@ -112,7 +78,6 @@ const TransactionForm = ({
           onChange={handleChange}
           className="border p-3 rounded-xl"
         />
-
       </div>
 
       <button
@@ -126,9 +91,8 @@ const TransactionForm = ({
         mt-6
         "
       >
-        Add Transaction
+        {editingId ? "Update Transaction" : "Add Transaction"}
       </button>
-
     </form>
   );
 };
