@@ -2,7 +2,11 @@
 
 MoneyFlow is a React-based personal finance management application that helps users track income, expenses, financial activity, and overall account balance.
 
-This project was built as part of my transition from Plant Science into Software Development and demonstrates modern frontend development concepts using React.
+This project was built as part of my journey from Plant Science into Software Development, with a focus on applying React to solve real-world personal finance problems.
+
+## 🔗 Live Demo
+
+[View Live Application](https://money-flow-mocha.vercel.app/)
 
 ## Features
 
@@ -70,6 +74,52 @@ Key React concepts demonstrated include:
 * Search and Filtering
 * Local Storage Persistence
 * CRUD Operations
+
+## 📸 Screenshots
+
+### Desktop View
+![Money flow Desktop View](./src/assets/screenshots/money-flow.png)
+
+### Mobile View
+![Money flow Mobile View](./src/assets/screenshots/money-flow-mobile-view.png)
+
+## 🚀 Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/olajideIfe/money-flow.git
+```
+
+Navigate to the project folder:
+
+```bash
+cd money-flow
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+## 📚 What I Learned
+
+While building MoneyFlow, I strengthened my understanding of:
+
+- Building reusable React components
+- Managing state with `useState`
+- Using `useEffect` for side effects
+- Implementing CRUD operations
+- Search and filtering techniques
+- Persisting data with Local Storage
+- Responsive UI development with Tailwind CSS
+- Structuring React applications for scalability
 
 ## Future Improvements
 
